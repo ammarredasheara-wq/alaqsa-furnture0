@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأقصى للأثاث - أثاث منزلي فاخر وصناعة يدوية راقية</title>
+  
+  <!-- Meta Tags for SEO -->
+  <meta name="description" content="الأقصى للأثاث - نصنع لك الفخامة والجمال بأعلى معايير الجودة اليدوية. ركن وأنتريهات، صالونات، غرف نوم، غرف أطفال، نيش وبوفيه بلمسة ملكية ذهبية.">
+  <meta name="keywords" content="الأقصى للأثاث, أثاث فاخر, أثاث مودرن, ركن وأنتريهات, غرف نوم دمياط, بوفيه ونيش, أثاث مصري ذهبي">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       STICKY NAVBAR
+       ========================================================================== -->
+  <header class="header-navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Brand Logo & Text -->
+      <a href="#home" class="nav-brand" id="brand-link">
+        <img src="assets/logo_transparent.png" alt="شعار الأقصى للأثاث" class="brand-logo">
+        <div class="brand-text">
+          <span class="ar">الأقصى للأثاث</span>
+        </div>
+      </a>
+      
+      <!-- Hamburger Toggle for Mobile -->
+      <button class="nav-toggle" id="menuToggle" aria-label="فتح القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link">الرئيسية</a>
+        <a href="#categories" class="nav-link">الكاتالوج</a>
+        <a href="#portfolio" class="nav-link" id="nav-link-portfolio">معرض الأعمال</a>
+        <a href="#portfolio" class="nav-link" id="nav-link-videos">الفيديوهات</a>
+        <a href="#about" class="nav-link">من نحن</a>
+        <a href="#contact" class="nav-link">اتصل بنا</a>
+      </nav>
+      
+      <!-- Sticky Action CTA Button -->
+      <div class="nav-actions">
+        <a href="https://wa.me/201554407330" target="_blank" class="btn-whatsapp-nav" id="whatsapp-nav-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>تواصل عبر واتساب</span>
+        </a>
+      </div>
+      
+    </div>
+  </header>
+
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-content reveal">
+      
+      <!-- Brand Logo Motif -->
+      <img src="assets/logo_transparent.png" alt="شعار الأقصى للأثاث" class="hero-logo">
+      
+      <!-- Headings -->
+      <div class="hero-title-container">
+        <h1 class="hero-title-ar">الأقصى للأثاث</h1>
+      </div>
+      
+      <!-- Subheadline -->
+      <p class="hero-subtitle">
+        نصنع لكم أفخم أنواع الأثاث المصنع يدوياً بأعلى جودة لبيوت تليق بجمال ذوقكم. دقة التفاصيل، فخامة الموديلات، وجمال اللمسة الذهبية الملكية.
+      </p>
+      
+      <!-- Action CTAs -->
+      <div class="hero-ctas">
+        <a href="https://wa.me/201554407330" target="_blank" class="btn-whatsapp-hero" id="whatsapp-hero-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>تواصل عبر واتساب</span>
+        </a>
+        <a href="#categories" class="btn-gallery-hero" id="browse-collections-btn">
+          <span>تصفح أعمالنا والكاتالوج</span>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       CATEGORIES SECTION (OUR COLLECTIONS)
+       ========================================================================== -->
+  <section class="categories-section" id="categories">
+    
+    <!-- Title -->
+    <div class="section-title reveal">
+      <h2 class="ar-title">الكاتالوج الفاخر</h2>
+    </div>
+    
+    <!-- Grid of 5 Category Cards -->
+    <div class="categories-grid" id="categoriesGrid">
+      
+      <!-- Card 1: Corner Sofas & Living Room Sets -->
+      <div class="category-card reveal delay-100" onclick="selectCategoryFilter('living')">
+        <div class="category-img-wrapper">
+          <img src="assets/category-living.jpg" alt="ركن وأنتريهات فاخرة" class="category-img">
+          <div class="category-overlay">
+            <i class="fa-solid fa-couch category-icon"></i>
+            <h3>ركن وأنتريهات</h3>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Dining Room -->
+      <div class="category-card reveal delay-200" onclick="selectCategoryFilter('dining')">
+        <div class="category-img-wrapper">
+          <img src="assets/category-dining.jpg" alt="سفرة كاملة مودرن" class="category-img">
+          <div class="category-overlay">
+            <i class="fa-solid fa-utensils category-icon"></i>
+            <h3>سفرة كاملة</h3>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3: Bedrooms -->
+      <div class="category-card reveal delay-100" onclick="selectCategoryFilter('bedroom')">
+        <div class="category-img-wrapper">
+          <img src="assets/category-bedroom.jpg" alt="غرف نوم رئيسية" class="category-img">
+          <div class="category-overlay">
+            <i class="fa-solid fa-bed category-icon"></i>
+            <h3>غرف نوم رئيسية</h3>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 4: Kids Rooms -->
+      <div class="category-card reveal delay-200" onclick="selectCategoryFilter('kids')">
+        <div class="category-img-wrapper">
+          <img src="assets/category-kids.jpg" alt="غرف أطفال فاخرة" class="category-img">
+          <div class="category-overlay">
+            <i class="fa-solid fa-child-reaching category-icon"></i>
+            <h3>غرف أطفال</h3>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 5: Display Units & Buffets -->
+      <div class="category-card reveal delay-300" onclick="selectCategoryFilter('buffet')">
+        <div class="category-img-wrapper">
+          <img src="assets/category-buffet.jpg" alt="نيش وبوفيه راقي" class="category-img">
+          <div class="category-overlay">
+            <i class="fa-solid fa-box-archive category-icon"></i>
+            <h3>نيش وبوفيه</h3>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       CATEGORY EXPLORER SECTION (UNIFIED MEDIA PORTFOLIO)
+       ========================================================================== -->
+  <section class="explorer-section" id="portfolio">
+    
+    <!-- Title -->
+    <div class="section-title reveal">
+      <h2 class="ar-title">تفاصيل أعمالنا ومعرض الجودة</h2>
+    </div>
+    
+    <!-- Sleek Horizontal Category Selection Tabs -->
+    <div class="explorer-category-bar reveal">
+      <button class="explorer-cat-btn active" data-category="living">
+        <i class="fa-solid fa-couch"></i>
+        <span>ركن وأنتريهات</span>
+      </button>
+      <button class="explorer-cat-btn" data-category="dining">
+        <i class="fa-solid fa-utensils"></i>
+        <span>سفرة كاملة</span>
+      </button>
+      <button class="explorer-cat-btn" data-category="bedroom">
+        <i class="fa-solid fa-bed"></i>
+        <span>غرف نوم رئيسية</span>
+      </button>
+      <button class="explorer-cat-btn" data-category="kids">
+        <i class="fa-solid fa-child-reaching"></i>
+        <span>غرف أطفال</span>
+      </button>
+      <button class="explorer-cat-btn" data-category="buffet">
+        <i class="fa-solid fa-box-archive"></i>
+        <span>نيش وبوفيه</span>
+      </button>
+    </div>
+
+    <!-- Explorer Panel (Unified Content Container) -->
+    <div class="explorer-panel reveal">
+      <!-- Media Type Sub-Tabs (Photos vs Videos) -->
+      <div class="explorer-media-tabs">
+        <button class="media-tab-btn active" data-media-type="photos">
+          <i class="fa-solid fa-images"></i>
+          <span>معرض الصور والكاتالوج</span>
+        </button>
+        <button class="media-tab-btn" data-media-type="videos">
+          <i class="fa-solid fa-circle-play"></i>
+          <span>فيديوهات الجودة والتصنيع</span>
+        </button>
+      </div>
+
+      <!-- Content Area -->
+      <div class="explorer-content">
+        <!-- Grid for Photos (Active by default) -->
+        <div class="explorer-grid active" id="explorerPhotosGrid"></div>
+        
+        <!-- Grid for Videos -->
+        <div class="explorer-grid" id="explorerVideosGrid"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       ABOUT US SECTION
+       ========================================================================== -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      
+      <!-- Visual block -->
+      <div class="about-visual reveal delay-100">
+        <div class="about-img-frame">
+          <img src="assets/logo_full.png" alt="شعار الأقصى للأثاث الفاخر" style="background: white; padding: 20px;">
+        </div>
+      </div>
+      
+      <!-- Text content -->
+      <div class="about-content reveal delay-200">
+        <span class="gold-tag">عراقة وفخامة تصنع الفارق</span>
+        <h2>من نحن</h2>
+        <div class="about-text">
+          <p>
+            تأسست علامة <strong>"الأقصى للأثاث"</strong> لتلبي رغبة الباحثين عن التفرد والأناقة المنزلية. نحن متخصصون في تصنيع وإنتاج أفخم قطع الأثاث المنزلي من الصالونات، الركنات، غرف النوم، والسفرة، معتمدين على أمهر الحرفيين في مصر والشرق الأوسط. تجمع ورشنا بين متانة الأخشاب الطبيعية المختارة بعناية، وبين فخامة التشطيبات الذهبية المستوحاة من الطرازات العربية والإسلامية العريقة بأسلوب عصري جذاب.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       FOOTER & CONTACT SECTION
+       ========================================================================== -->
+  <footer class="footer-section" id="contact">
+    <div class="footer-container">
+      
+      <!-- Info Column -->
+      <div class="footer-info reveal delay-100">
+        <div class="footer-brand">
+          <img src="assets/logo_transparent.png" alt="شعار ماركة الأقصى للأثاث" class="footer-logo">
+          <h3>الأقصى للأثاث</h3>
+        </div>
+        <p class="footer-desc">
+          شغفنا هو صناعة أثاث يفوق توقعاتكم، يملأ بيوتكم بالدفء، الأناقة، والفخامة الملكية التي تدوم لأجيال.
+        </p>
+      </div>
+      
+      <!-- Quick Links Column -->
+      <div class="footer-links-col reveal delay-200">
+        <h4>روابط سريعة</h4>
+        <ul class="footer-links-list">
+          <li><a href="#home"><i class="fa-solid fa-chevron-left" style="margin-left: 8px; font-size: 0.7rem; color: var(--gold-primary);"></i>الرئيسية</a></li>
+          <li><a href="#categories"><i class="fa-solid fa-chevron-left" style="margin-left: 8px; font-size: 0.7rem; color: var(--gold-primary);"></i>الكاتالوج الفاخر</a></li>
+          <li><a href="#portfolio" id="footer-link-portfolio"><i class="fa-solid fa-chevron-left" style="margin-left: 8px; font-size: 0.7rem; color: var(--gold-primary);"></i>معرض الأعمال</a></li>
+          <li><a href="#portfolio" id="footer-link-videos"><i class="fa-solid fa-chevron-left" style="margin-left: 8px; font-size: 0.7rem; color: var(--gold-primary);"></i>الفيديوهات المصورة</a></li>
+          <li><a href="#about"><i class="fa-solid fa-chevron-left" style="margin-left: 8px; font-size: 0.7rem; color: var(--gold-primary);"></i>من نحن</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact Details Column -->
+      <div class="footer-links-col reveal delay-300">
+        <h4>اتصل بنا</h4>
+        <div class="footer-contact-info">
+          
+          <!-- Phone number -->
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div class="footer-contact-text">
+              <h5>رقم الهاتف والتواصل</h5>
+              <p dir="ltr">01554407330</p>
+            </div>
+          </div>
+          
+          <!-- Address -->
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div class="footer-contact-text">
+              <h5>المعرض والمصنع الرئيسي</h5>
+              <p style="font-family: var(--font-arabic); font-size: 0.95rem;">جمهورية مصر العربية، ورش تصنيع الأثاث الفاخر والراقي</p>
+            </div>
+          </div>
+          
+          <!-- Social Icons -->
+          <div class="footer-socials">
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/201554407330" target="_blank" class="social-icon-btn whatsapp-color" title="محادثة واتساب مباشرة" aria-label="واتساب">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/1PqfGgZXEw/" target="_blank" class="social-icon-btn facebook-color" title="صفحة الفيسبوك" aria-label="فيسبوك">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@alaqsa.furniture7" target="_blank" class="social-icon-btn tiktok-color" title="حساب تيك توك" aria-label="تيك توك">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Copyright line -->
+    <div class="footer-bottom">
+      <p class="ar-copy">&copy; جميع الحقوق محفوظة لـ <strong>الأقصى للأثاث</strong> 2026</p>
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       FLOATING ANIMATED WHATSAPP BUTTON
+       ========================================================================== -->
+  <a href="https://wa.me/201554407330" target="_blank" class="floating-whatsapp" id="floating-whatsapp-btn" title="تواصل معنا عبر واتساب" aria-label="واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+
+  <!-- ==========================================================================
+       LIGHTBOX POPUP FOR GALLERY IMAGES
+       ========================================================================== -->
+  <div class="lightbox-modal" id="galleryLightbox">
+    <!-- Close icon -->
+    <button class="lightbox-close" aria-label="إغلاق المعرض">&times;</button>
+    
+    <!-- Navigation buttons -->
+    <button class="lightbox-btn lightbox-prev" aria-label="الصورة السابقة">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <button class="lightbox-btn lightbox-next" aria-label="الصورة التالية">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    
+    <!-- Image & Caption Container -->
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img">
+      <div class="lightbox-caption">
+        <span class="ar-caption"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Core Script file link -->
+  <script src="script.js"></script>
+</body>
+</html>
