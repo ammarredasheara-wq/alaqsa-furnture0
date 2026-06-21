@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | الأقصى للأثاث</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+    
+    :root {
+      --navy-deep: #0A1224;
+      --navy-primary: #1B2A4A;
+      --navy-light: #253966;
+      --gold-primary: #C9A24B;
+      --gold-light: #E5C478;
+      --gold-dark: #A47E31;
+      --white: #FFFFFF;
+      --bg-light: #F7F9FB;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      direction: rtl;
+      text-align: right;
+      padding: 2rem 5%;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/marble-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: none;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold-primary);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .brand img {
+      height: 50px;
+    }
+    
+    .brand h1 {
+      font-size: 1.8rem;
+      color: var(--navy-primary);
+      font-weight: 800;
+    }
+    
+    .btn-logout {
+      background: linear-gradient(135deg, #EF4444, #B91C1C);
+      color: var(--white);
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn-logout:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+    
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    
+    @media (max-width: 900px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .card {
+      background-color: var(--white);
+      border-radius: 6px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid rgba(201, 162, 75, 0.15);
+      margin-bottom: 2rem;
+    }
+    
+    .card h2 {
+      font-size: 1.4rem;
+      color: var(--navy-primary);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(201, 162, 75, 0.15);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .card h2 i {
+      color: var(--gold-primary);
+    }
+    
+    .form-group {
+      margin-bottom: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+      color: var(--navy-primary);
+    }
+    
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.75rem;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 162, 75, 0.3);
+      background-color: var(--white);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 8px rgba(201, 162, 75, 0.2);
+    }
+    
+    .btn-submit {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      color: var(--white);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(201, 162, 75, 0.3);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    }
+    
+    .product-list {
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-left: 5px;
+    }
+    
+    .product-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(201, 162, 75, 0.15);
+      border-radius: 4px;
+      padding: 0.8rem;
+      background-color: var(--bg-light);
+    }
+    
+    .product-item img {
+      width: 60px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid var(--gold-primary);
+    }
+    
+    .product-meta {
+      flex-grow: 1;
+      margin-right: 1rem;
+    }
+    
+    .product-meta h4 {
+      font-size: 1.05rem;
+      color: var(--navy-primary);
+    }
+    
+    .product-meta span {
+      font-size: 0.8rem;
+      color: var(--gold-dark);
+      background-color: var(--gold-cream);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    
+    .btn-delete {
+      background-color: #EF4444;
+      color: var(--white);
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-delete:hover {
+      background-color: #DC2626;
+      transform: scale(1.05);
+    }
+    
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 18, 36, 0.95);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .login-box {
+      background-color: var(--white);
+      border-radius: 6px;
+      padding: 3rem 2.5rem;
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    
+    .login-box img {
+      height: 80px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .login-box h2 {
+      font-size: 1.6rem;
+      color: var(--navy-primary);
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+    
+    .login-box p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    
+    .login-box input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 162, 75, 0.4);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+    
+    .login-error {
+      color: #EF4444;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       LOGIN MODAL OVERLAY
+       ========================================================================== -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <img src="assets/logo_transparent.png" alt="شعار الأقصى للأثاث">
+      <h2>دخول لوحة التحكم</h2>
+      <p>الأقصى للأثاث - نظام إدارة المحتوى التلقائي</p>
+      
+      <div class="login-error" id="loginError">كلمة المرور غير صحيحة!</div>
+      
+      <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور" onkeydown="if(event.key === 'Enter') attemptLogin()">
+      <button class="btn-submit" onclick="attemptLogin()">تسجيل الدخول</button>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       MAIN ADMIN CONTAINER
+       ========================================================================== -->
+  <div class="admin-container" id="adminContainer">
+    
+    <!-- Top Header -->
+    <header>
+      <div class="brand">
+        <img src="assets/logo_transparent.png" alt="شعار الماركة">
+        <h1>لوحة التحكم وإدارة المحتوى</h1>
+      </div>
+      <button class="btn-logout" onclick="logout()">تسجيل الخروج</button>
+    </header>
+    
+    <!-- Dashboard Actions Grid -->
+    <div class="dashboard-grid">
+      
+      <!-- Column 1: Product Management -->
+      <div>
+        
+        <!-- Add New Product Form -->
+        <div class="card">
+          <h2><i class="fa-solid fa-plus-circle"></i> إضافة منتج جديد للمعرض</h2>
+          <form id="addProductForm">
+            <div class="form-group">
+              <label for="productTitle">اسم المنتج / الوصف القصير</label>
+              <input type="text" id="productTitle" placeholder="مثال: ركنة مودرن كابتونيه رمادي" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="productCategory">قسم الكاتالوج التابع له</label>
+              <select id="productCategory" required>
+                <option value="living">ركن وأنتريهات</option>
+                <option value="dining">سفرة كاملة</option>
+                <option value="bedroom">غرف نوم رئيسية</option>
+                <option value="kids">غرف أطفال</option>
+                <option value="buffet">نيش وبوفيه</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="productImage">صورة المنتج (JPG / PNG)</label>
+              <input type="file" id="productImage" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">رفع وإضافة منتج</button>
+          </form>
+        </div>
+        
+        <!-- Current Products List -->
+        <div class="card">
+          <h2><i class="fa-solid fa-images"></i> معرض الأعمال الحالي</h2>
+          <div class="product-list" id="productsList">
+            <!-- Dynamically Loaded products -->
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Column 2: Categories & Dynamic Videos Management -->
+      <div>
+        
+        <!-- Edit Category Covers Form -->
+        <div class="card">
+          <h2><i class="fa-solid fa-folder-open"></i> تعديل أغلفة أقسام الكاتالوج الرئيسي</h2>
+          <form id="editCategoryForm">
+            <div class="form-group">
+              <label for="categorySelect">اختر قسم الكاتالوج المراد تعديله</label>
+              <select id="categorySelect" required>
+                <option value="living">ركن وأنتريهات</option>
+                <option value="dining">سفرة كاملة</option>
+                <option value="bedroom">غرف نوم رئيسية</option>
+                <option value="kids">غرف أطفال</option>
+                <option value="buffet">نيش وبوفيه</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="categoryImage">صورة الغلاف الجديدة</label>
+              <input type="file" id="categoryImage" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">تحديث صورة الغلاف</button>
+          </form>
+        </div>
+        
+        <!-- Add New Video Form -->
+        <div class="card">
+          <h2><i class="fa-solid fa-plus-circle"></i> إضافة فيديو جديد للمعرض</h2>
+          <form id="addVideoForm">
+            <div class="form-group">
+              <label for="videoTitle">عنوان الفيديو</label>
+              <input type="text" id="videoTitle" placeholder="مثال: تفاصيل تصنيع صالون مذهب" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="videoDesc">الشرح والوصف</label>
+              <textarea id="videoDesc" rows="2" placeholder="وصف قصير عما يعرضه الفيديو..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="videoCategory">قسم الكاتالوج التابع له الفيديو</label>
+              <select id="videoCategory" required>
+                <option value="living">ركن وأنتريهات</option>
+                <option value="dining">سفرة كاملة</option>
+                <option value="bedroom">غرف نوم رئيسية</option>
+                <option value="kids">غرف أطفال</option>
+                <option value="buffet">نيش وبوفيه</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="videoYoutubeId">معرف فيديو يوتيوب (YouTube ID)</label>
+              <input type="text" id="videoYoutubeId" placeholder="مثال: 9D3vj25iYy8" required>
+              <small style="color: var(--text-muted); font-size: 0.8rem;">
+                * المعرّف هو الحروف التي تلي v= في رابط الفيديو (مثال: youtube.com/watch?v=<b>ABC123XYZ</b>)
+              </small>
+            </div>
+            
+            <div class="form-group">
+              <label for="videoThumb">صورة غلاف للفيديو</label>
+              <input type="file" id="videoThumb" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">إضافة ورفع الفيديو</button>
+          </form>
+        </div>
+        
+        <!-- Current Videos List -->
+        <div class="card">
+          <h2><i class="fa-solid fa-circle-play"></i> قائمة الفيديوهات الحالية</h2>
+          <div class="product-list" id="videosList">
+            <!-- Dynamically Loaded videos -->
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       DASHBOARD SCRIPT
+       ========================================================================== -->
+  <script>
+    let adminPassword = '';
+    let database = { categories: [], products: [], videos: [] };
+    
+    const catLabels = {
+      'living': 'ركن وأنتريهات',
+      'dining': 'سفرة كاملة',
+      'bedroom': 'غرف نوم رئيسية',
+      'kids': 'غرف أطفال',
+      'buffet': 'نيش وبوفيه'
+    };
+    
+    // Auto login check on load
+    window.onload = () => {
+      const stored = localStorage.getItem('al_aqsa_admin_pw');
+      if (stored) {
+        verifyPassword(stored);
+      }
+    };
+    
+    // Verify password via API
+    async function verifyPassword(pwd) {
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd })
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          adminPassword = pwd;
+          localStorage.setItem('al_aqsa_admin_pw', pwd);
+          document.getElementById('loginOverlay').style.display = 'none';
+          document.getElementById('adminContainer').style.display = 'block';
+          loadDashboardData();
+        } else {
+          showError();
+        }
+      } catch (err) {
+        alert('حدث خطأ في الاتصال بالخادم!');
+      }
+    }
+    
+    function attemptLogin() {
+      const inputVal = document.getElementById('adminPassword').value;
+      if (!inputVal) return;
+      verifyPassword(inputVal);
+    }
+    
+    function showError() {
+      document.getElementById('loginError').style.display = 'block';
+      localStorage.removeItem('al_aqsa_admin_pw');
+    }
+    
+    function logout() {
+      localStorage.removeItem('al_aqsa_admin_pw');
+      window.location.reload();
+    }
+    
+    // Fetch and populate lists
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('/api/data');
+        database = await response.json();
+        
+        renderProductsList();
+        renderVideosList();
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    }
+    
+    // Render Products List with category labels
+    function renderProductsList() {
+      const container = document.getElementById('productsList');
+      container.innerHTML = '';
+      
+      if (database.products.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">لا يوجد منتجات حالياً. أضف أول منتج أعلاه!</p>';
+        return;
+      }
+      
+      database.products.forEach(p => {
+        const label = catLabels[p.category] || p.category;
+        const item = document.createElement('div');
+        item.className = 'product-item';
+        item.innerHTML = `
+          <img src="${p.img}" alt="${p.title}">
+          <div class="product-meta">
+            <h4>${p.title}</h4>
+            <span>${label}</span>
+          </div>
+          <button class="btn-delete" onclick="deleteProduct(${p.id})">حذف</button>
+        `;
+        container.appendChild(item);
+      });
+    }
+    
+    // Render Videos List with category labels
+    function renderVideosList() {
+      const container = document.getElementById('videosList');
+      container.innerHTML = '';
+      
+      if (!database.videos || database.videos.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">لا يوجد فيديوهات حالياً.</p>';
+        return;
+      }
+      
+      database.videos.forEach(v => {
+        const label = catLabels[v.category] || v.category;
+        const item = document.createElement('div');
+        item.className = 'product-item';
+        item.innerHTML = `
+          <img src="${v.thumb}" alt="${v.title}">
+          <div class="product-meta">
+            <h4>${v.title}</h4>
+            <span>${label}</span>
+          </div>
+          <button class="btn-delete" onclick="deleteVideo(${v.id})">حذف</button>
+        `;
+        container.appendChild(item);
+      });
+    }
+    
+    // Add product action
+    document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const title = document.getElementById('productTitle').value;
+      const category = document.getElementById('productCategory').value;
+      const fileInput = document.getElementById('productImage');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+      
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('category', category);
+      formData.append('image', file);
+      
+      try {
+        const response = await fetch('/api/upload-product', {
+          method: 'POST',
+          headers: { 'x-admin-password': adminPassword },
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('تم إضافة المنتج بنجاح للمعرض!');
+          document.getElementById('productTitle').value = '';
+          fileInput.value = '';
+          loadDashboardData();
+        } else {
+          alert('خطأ: ' + result.message);
+        }
+      } catch (err) {
+        alert('حدث خطأ أثناء رفع المنتج!');
+      }
+    });
+    
+    // Delete product action
+    async function deleteProduct(id) {
+      if (!confirm('هل أنت متأكد من حذف هذا المنتج نهائياً من المعرض؟')) return;
+      
+      try {
+        const response = await fetch('/api/delete-product', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPassword 
+          },
+          body: JSON.stringify({ id: id })
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('تم حذف المنتج بنجاح!');
+          loadDashboardData();
+        } else {
+          alert('خطأ: ' + result.message);
+        }
+      } catch (err) {
+        alert('حدث خطأ أثناء حذف المنتج!');
+      }
+    }
+    
+    // Add video action
+    document.getElementById('addVideoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const title = document.getElementById('videoTitle').value;
+      const desc = document.getElementById('videoDesc').value;
+      const youtubeId = document.getElementById('videoYoutubeId').value;
+      const category = document.getElementById('videoCategory').value;
+      const fileInput = document.getElementById('videoThumb');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+      
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('desc', desc);
+      formData.append('youtubeId', youtubeId);
+      formData.append('category', category);
+      formData.append('image', file);
+      
+      try {
+        const response = await fetch('/api/upload-video', {
+          method: 'POST',
+          headers: { 'x-admin-password': adminPassword },
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('تم إضافة الفيديو بنجاح للمعرض!');
+          document.getElementById('videoTitle').value = '';
+          document.getElementById('videoDesc').value = '';
+          document.getElementById('videoYoutubeId').value = '';
+          fileInput.value = '';
+          loadDashboardData();
+        } else {
+          alert('خطأ: ' + result.message);
+        }
+      } catch (err) {
+        alert('حدث خطأ أثناء رفع الفيديو!');
+      }
+    });
+    
+    // Delete video action
+    async function deleteVideo(id) {
+      if (!confirm('هل أنت متأكد من حذف هذا الفيديو نهائياً؟')) return;
+      
+      try {
+        const response = await fetch('/api/delete-video', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPassword 
+          },
+          body: JSON.stringify({ id: id })
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('تم حذف الفيديو بنجاح!');
+          loadDashboardData();
+        } else {
+          alert('خطأ: ' + result.message);
+        }
+      } catch (err) {
+        alert('حدث خطأ أثناء حذف الفيديو!');
+      }
+    }
+    
+    // Update Category Cover action
+    document.getElementById('editCategoryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const categoryId = document.getElementById('categorySelect').value;
+      const fileInput = document.getElementById('categoryImage');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+      
+      const formData = new FormData();
+      formData.append('categoryId', categoryId);
+      formData.append('image', file);
+      
+      try {
+        const response = await fetch('/api/upload-category', {
+          method: 'POST',
+          headers: { 'x-admin-password': adminPassword },
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('تم تحديث صورة غلاف القسم بنجاح!');
+          fileInput.value = '';
+          loadDashboardData();
+        } else {
+          alert('خطأ: ' + result.message);
+        }
+      } catch (err) {
+        alert('حدث خطأ أثناء تحديث الغلاف!');
+      }
+    });
+  </script>
+</body>
+</html>

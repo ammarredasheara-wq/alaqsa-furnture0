@@ -1,0 +1,75 @@
+{
+  "categories": [
+    {
+      "id": "living",
+      "title": "ركن وأنتريهات",
+      "img": "assets/uploads/image-1782034997487-849246976.jpeg"
+    },
+    {
+      "id": "dining",
+      "title": "سفرة كاملة",
+      "img": "assets/uploads/image-1782035029317-751314536.jpeg"
+    },
+    {
+      "id": "bedroom",
+      "title": "غرف نوم رئيسية",
+      "img": "assets/uploads/image-1782035084231-738357024.jpeg"
+    },
+    {
+      "id": "kids",
+      "title": "غرف أطفال",
+      "img": "assets/category-kids.jpg"
+    },
+    {
+      "id": "buffet",
+      "title": "نيش وبوفيه",
+      "img": "assets/category-buffet.jpg"
+    }
+  ],
+  "products": [
+    {
+      "id": 1782034288594,
+      "title": "ركنة مودرن",
+      "category": "living",
+      "img": "assets/uploads/image-1782034288589-617119931.jpeg"
+    },
+    {
+      "id": 1782034319825,
+      "title": "أنتريه",
+      "category": "living",
+      "img": "assets/uploads/image-1782034319822-607689914.jpeg"
+    },
+    {
+      "id": 1782034779695,
+      "title": "سفرة",
+      "category": "dining",
+      "img": "assets/uploads/image-1782034779693-96945270.jpeg"
+    }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "title": "مراحل التصنيع اليدوي الفاخر",
+      "desc": "شاهد دقة التصنيع واختيار الأخشاب والتشطيبات الذهبية الفاخرة في ورشنا ومصانعنا.",
+      "youtubeId": "ضع_معرف_اليوتيوب_هنا_1",
+      "category": "living",
+      "thumb": "assets/video-thumb-1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "جولة داخل معرض الأثاث الراقي",
+      "desc": "استمتع برؤية الموديلات الجاهزة والتشكيلات الحصرية لصالوناتنا وركناتنا وغرف النوم المميزة.",
+      "youtubeId": "ضع_معرف_اليوتيوب_هنا_2",
+      "category": "bedroom",
+      "thumb": "assets/video-thumb-2.jpg"
+    },
+    {
+      "id": 1782035194570,
+      "title": "غرفة نوم مودرن",
+      "desc": "غرفة نوم عصرية تتميز بالتناسق والانسيابية",
+      "youtubeId": "\"C:\\Users\\Tomisalv\\Desktop\\شغل\\WhatsApp Video 2026-06-21 at 12.16.51.mp4\"",
+      "category": "bedroom",
+      "thumb": "assets/uploads/image-1782035194567-528432605.jpeg"
+    }
+  ]
+}
